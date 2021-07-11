@@ -12,7 +12,7 @@ var prefix = css`
 `
 
 module.exports = (state, emit) => {
-  emit(state.events.DOMTITLECHANGE, 'Edit Profile | datBase')
+  emit(state.events.DOMTITLECHANGE, 'Edit Profile | datDirectory')
 
   function onSubmit (e) {
     const data = form(e.target)

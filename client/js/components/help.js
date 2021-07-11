@@ -6,10 +6,10 @@ module.exports = (state, emit) => {
   const intro = () => emit('help:show')
   return html`
     ${button({
-      icon: '/public/img/question.svg',
-      text: 'Help',
-      klass: 'btn btn--green btn__reveal-text dat-button--help',
-      click: intro
-    })}
+    icon: '/public/img/question.svg',
+    text: 'Help',
+    klass: 'btn btn--green btn__reveal-text dat-button--help',
+    click: intro
+  })}
     `
 }

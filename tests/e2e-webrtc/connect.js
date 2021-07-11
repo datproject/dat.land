@@ -9,13 +9,13 @@ function makeServer () {
   }).on('error', (err) => {
     throw err
   })
-  server.listen({path: '/tmp/nightwatch-ipc.sock'}, () => {
+  server.listen({ path: '/tmp/nightwatch-ipc.sock' }, () => {
   })
   return server
 }
 
 function makeClient () {
-  var socket = net.connect({path: '/tmp/nightwatch-ipc.sock'}, () => {
+  var socket = net.connect({ path: '/tmp/nightwatch-ipc.sock' }, () => {
     socket.on('data', (data) => {
     })
   }).on('error', () => {

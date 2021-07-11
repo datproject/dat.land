@@ -28,10 +28,10 @@ module.exports = function (state, emit) {
           <a class="${logoCss} v-mid dib link dim mr2 w2 h2" href="/" title="DatBase">
             <img src="/public/img/dat-hexagon.svg" alt="Dat Logo">
           </a>
-          <a class="mr3 v-mid link dim color-neutral hover-color-neutral b f5 f3-ns dib-ns dn" href="/" title="datBase">dat<span class="color-neutral-60">Base</span></a>
+          <a class="mr3 v-mid link dim color-neutral hover-color-neutral b f5 f3-ns dib-ns dn" href="/" title="datBase">dat<span class="color-neutral-60">Directory</span></a>
           ${importButton(emit)}
           <a href="http://docs.datproject.org" class="ml3 link dim color-neutral ttu tracked f6 f5-ns dib">Docs</a>
-          <a href="http://chat.datproject.org" class="ml3 link dim color-neutral ttu tracked f6 f5-ns dib-l dn">Chat</a>
+          <a href="http://datproject.org" class="ml3 link dim color-neutral ttu tracked f6 f5-ns dib-l dn">Home</a>
         </div>
         <div class="dtc v-mid w-25 tr">
           ${state.township.email ? html`<a href="/publish" class="dib-ns dn btn btn--green">Publish</a>` : ''}

@@ -48,9 +48,9 @@ module.exports = function hyperhealth (state, emit) {
   </div>
     <div>
       ${data.peers.map((peer, i) => {
-        const prog = (peer.have * 100) / peer.length
-        if (!prog) return circle(prog)
-      })}
+    const prog = (peer.have * 100) / peer.length
+    if (!prog) return circle(prog)
+  })}
       </div>
   </div>
   `

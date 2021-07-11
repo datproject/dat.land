@@ -85,7 +85,7 @@ module.exports = function (config) {
     archive.stat(name, function (err, st) {
       if (err) return onerror(err, res)
       debug('file requested', st.size)
-      mx.track('file requested', {size: st.size})
+      mx.track('file requested', { size: st.size })
 
       if (st.isDirectory()) {
         res.statusCode = 302
@@ -95,7 +95,7 @@ module.exports = function (config) {
 
       var r = req.headers.range && range(st.size, req.headers.range)[0]
       res.setHeader('Accept-Ranges', 'bytes')
-      res.setHeader('Content-Type', mime.lookup(name))
+      res.setHeader('Content-Type', mime.getType(name))
 
       if (r) {
         res.statusCode = 206
@@ -131,10 +131,10 @@ module.exports = function (config) {
   router.get('/metadata/:archiveKey', function (req, res) {
     var timeout = parseInt(req.query.timeout, 10) || 1000
     debug('requesting metadata for key', req.params.archiveKey)
-    archiver.get(req.params.archiveKey, {timeout}, function (err, archive) {
+    archiver.get(req.params.archiveKey, { timeout }, function (err, archive) {
       if (err) return onerror(err, res)
-      archiver.metadata(archive, {timeout}, function (err, info) {
-        if (err) info.error = {message: err.message}
+      archiver.metadata(archive, { timeout }, function (err, info) {
+        if (err) info.error = { message: err.message }
         info.health = archiver.health(archive)
         return res.status(200).json(info)
       })
@@ -149,7 +149,7 @@ module.exports = function (config) {
   router.get('/:username', function (req, res) {
     var state = getDefaultAppState()
     debug('looking for user', req.params.username)
-    db.users.get({username: req.params.username}, function (err, results) {
+    db.users.get({ username: req.params.username }, function (err, results) {
       if (err) return onerror(err, res)
       if (!results.length) {
         debug('user not found')
@@ -157,7 +157,7 @@ module.exports = function (config) {
       }
       var user = results[0]
       debug('profile views', user)
-      mx.track('profile viewed', {distinct_id: user.email})
+      mx.track('profile viewed', { distinct_id: user.email })
       state.profile = {
         username: user.username,
         role: user.role,
@@ -169,7 +169,7 @@ module.exports = function (config) {
         id: user.id
       }
       debug('getting dats')
-      db.dats.get({user_id: user.id}, function (err, results) {
+      db.dats.get({ user_id: user.id }, function (err, results) {
         if (err) return onerror(err, res)
         state.profile.dats = results
         debug('sending profile', state.profile)
@@ -184,7 +184,7 @@ module.exports = function (config) {
     db.dats.getByShortname(req.params, function (err, dat) {
       if (err) {
         var state = getDefaultAppState()
-        state.archive.error = {message: err.message}
+        state.archive.error = { message: err.message }
         debug('could not get dat with ' + req.params, err)
         return sendSPA(req, res, state)
       }
@@ -224,14 +224,14 @@ module.exports = function (config) {
         if (err) return onerror(err, res)
         archive.stat(filename, function (err, entry) {
           if (err) {
-            state.preview.error = {message: err.message}
-            entry = {name: filename}
+            state.preview.error = { message: err.message }
+            entry = { name: filename }
           }
           entry.name = filename
           entry.archiveKey = req.params.archiveKey
           entry.type = entry.isDirectory
             ? entry.isDirectory() ? 'directory' : 'file'
-              : 'file'
+            : 'file'
           if (entry.type === 'directory') {
             state.archive.root = entry.name
             return sendSPA(req, res, state)
@@ -249,7 +249,7 @@ module.exports = function (config) {
 
   function onerror (err, res) {
     console.trace(err)
-    return res.status(400).json({statusCode: 400, message: err.message})
+    return res.status(400).json({ statusCode: 400, message: err.message })
   }
 
   function archiveRoute (key, cb) {
@@ -260,7 +260,7 @@ module.exports = function (config) {
       debug(key, err)
       if (cancelled) return true
       cancelled = true
-      state.archive.error = {message: err.message}
+      state.archive.error = { message: err.message }
       return cb(state)
     }
 
@@ -272,7 +272,7 @@ module.exports = function (config) {
     }, 1000)
 
     var state = getDefaultAppState()
-    mx.track('archive viewed', {key: key})
+    mx.track('archive viewed', { key: key })
 
     archiver.get(key, function (err, archive, key) {
       if (err) return onerror(err)
@@ -283,8 +283,8 @@ module.exports = function (config) {
         if (cancelled) return
         cancelled = true
 
-        archiver.metadata(archive, {timeout: 1000}, function (err, info) {
-          if (err) state.archive.error = {message: err.message}
+        archiver.metadata(archive, { timeout: 1000 }, function (err, info) {
+          if (err) state.archive.error = { message: err.message }
           state.archive = xtend(state.archive, info)
           state.archive.key = key
           cb(state)

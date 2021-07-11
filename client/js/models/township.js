@@ -22,7 +22,7 @@ module.exports = function (state, emitter) {
   emitter.on('township:whoami', function (data) {
     const user = api.whoami()
     if (user.username) {
-      api.users.get({username: user.username}, function (err, resp, results) {
+      api.users.get({ username: user.username }, function (err, resp, results) {
         if (err && err.message === 'jwt expired') {
           emitter.emit('township:logout', data)
           return done()
@@ -30,7 +30,7 @@ module.exports = function (state, emitter) {
         if (!results.length) return done()
         var newState = user
         newState.profile = results[0]
-        api.dats.get({user_id: user.id}, function (err, resp, results) {
+        api.dats.get({ user_id: user.id }, function (err, resp, results) {
           if (err && err.message === 'jwt expired') {
             emitter.emit('township:logout', data)
             return done()
@@ -48,7 +48,7 @@ module.exports = function (state, emitter) {
 
   emitter.on('township:logout', function (data) {
     api.logout(data, function (err, resp, data) {
-      if (err) return emitter.emit('township:update', {error: err.message})
+      if (err) return emitter.emit('township:update', { error: err.message })
       emitter.emit('township:update', defaults.township)
       emitter.emit('message:success', 'Successfully Logged Out')
     })
@@ -56,7 +56,7 @@ module.exports = function (state, emitter) {
 
   emitter.on('township:login', function (data) {
     api.login(data, function (err, resp, data) {
-      if (err) return emitter.emit('township:update', {error: err.message})
+      if (err) return emitter.emit('township:update', { error: err.message })
       data.login = 'hidden'
       emitter.emit('township:update', data)
       window.location.href = '/' + data.username
@@ -65,7 +65,7 @@ module.exports = function (state, emitter) {
 
   emitter.on('township:register', function (data) {
     api.register(data, function (err, resp, data) {
-      if (err) return emitter.emit('township:error', {error: err.message})
+      if (err) return emitter.emit('township:error', { error: err.message })
       data.register = 'hidden'
       emitter.emit('township:update', data)
       window.location.href = '/profile/edit'
@@ -74,16 +74,16 @@ module.exports = function (state, emitter) {
 
   emitter.on('township:resetPassword', function (data) {
     var email = data || state.township.account.auth.basic.email
-    api.users.resetPassword({email}, function (err, res, body) {
+    api.users.resetPassword({ email }, function (err, res, body) {
       if (err) return emitter.emit('township:error', err.message)
-      emitter.emit('township:update', {passwordResetResponse: body.message})
+      emitter.emit('township:update', { passwordResetResponse: body.message })
     })
   })
 
   emitter.on('township:resetPasswordConfirmation', function (data) {
     api.users.resetPasswordConfirmation(data, function (err, res, body) {
       if (err) return emitter.emit('township:error', err.message)
-      emitter.emit('township:update', {passwordResetConfirmResponse: body.message, passwordResetResponse: null})
+      emitter.emit('township:update', { passwordResetConfirmResponse: body.message, passwordResetResponse: null })
     })
   })
 

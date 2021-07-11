@@ -10,22 +10,22 @@ const hyperdriveStats = require('../../elements/hyperdrive-stats')
 const css = require('sheetify')
 
 var ARCHIVE_ERRORS = {
-  'Invalid key': {header: 'No dat here.', body: 'Looks like the key is invalid. Are you sure it\'s correct?'},
-  '/ could not be found': {header: 'Looking for sources…', icon: 'loader', body: 'Is the address correct?'},
-  'timed out': {header: 'Looking for sources…', icon: 'loader', body: 'Is the address correct?'},
-  'Username not found.': {header: 'That user does not exist.'},
-  'Dat with that name not found.': {header: 'That user does not have a dat with that name.'},
-  'too many retries': {header: 'Could not find that dat.', body: 'Is the address correct? Try refreshing your browser.'}
+  'Invalid key': { header: 'No dat here.', body: 'Looks like the key is invalid. Are you sure it\'s correct?' },
+  '/ could not be found': { header: 'Looking for sources…', icon: 'loader', body: 'Is the address correct?' },
+  'timed out': { header: 'Looking for sources…', icon: 'loader', body: 'Is the address correct?' },
+  'Username not found.': { header: 'That user does not exist.' },
+  'Dat with that name not found.': { header: 'That user does not have a dat with that name.' },
+  'too many retries': { header: 'Could not find that dat.', body: 'Is the address correct? Try refreshing your browser.' }
 }
 
 const archivePage = (state, emit) => {
   var err = state.archive.error
-  if (!module.parent && state.archive.retries < 3) emit('archive:getMetadata', {timeout: 3000})
+  if (!module.parent && state.archive.retries < 3) emit('archive:getMetadata', { timeout: 3000 })
   if (err) {
     emit(state.events.DOMTITLECHANGE, 'Error Loading Dat | datBase')
     if (err.message === 'Block not downloaded') err.message = 'timed out'
     if (!state.archive.entries.length) {
-      if (state.archive.retries >= 3) err = {message: 'too many retries'}
+      if (state.archive.retries >= 3) err = { message: 'too many retries' }
       var props = ARCHIVE_ERRORS[err.message]
       if (props) {
         return html`
@@ -38,7 +38,7 @@ const archivePage = (state, emit) => {
   }
   // var owner = (meta && state.township) && meta.username === state.township.username
   var meta = state.archive.metadata
-  var title = meta && meta.title || meta.shortname || state.archive.key
+  var title = (meta && meta.title) || meta.shortname || state.archive.key
   var description = meta && meta.description
 
   emit(state.events.DOMTITLECHANGE, `${title} | DatBase`)
@@ -129,10 +129,10 @@ const archivePage = (state, emit) => {
         <div class="container">
           <span id="help-text" class="status-bar-status"></span>
           ${(state.archive.downloadTotal || state.archive.uploadTotal)
-            ? html`<div id="hyperdrive-stats" class="status-bar-stats">
+    ? html`<div id="hyperdrive-stats" class="status-bar-stats">
                 Total: ${hyperdriveStats({ downloaded: state.archive.downloadTotal, uploaded: state.archive.uploadTotal })}
               </div>`
-            : ''}
+    : ''}
         </div>
       </div>
       ${preview(state, emit)}

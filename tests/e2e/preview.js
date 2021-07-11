@@ -18,4 +18,4 @@ module.exports = new function () {
       client.expect.element('.dat-detail.size').text.to.contain('48 B')
     })
   }
-}
+}()

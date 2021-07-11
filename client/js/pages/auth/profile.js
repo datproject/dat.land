@@ -51,7 +51,7 @@ module.exports = (state, emit) => {
   var name = state.profile.name
   var numDats = state.profile.dats.length
   var description = state.profile.description
-  var pic = gravatar({email}, {}, avatarStyles)
+  var pic = gravatar({ email }, {}, avatarStyles)
   var owner = state.township.profile.username === state.profile.username
   var showPlaceholder = numDats === 0 && owner
 

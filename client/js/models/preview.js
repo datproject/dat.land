@@ -8,7 +8,7 @@ module.exports = function (state, emitter) {
   })
 
   emitter.on('preview:openPanel', function (data) {
-    emitter.emit('preview:update', {isPanelOpen: true, error: null})
+    emitter.emit('preview:update', { isPanelOpen: true, error: null })
   })
 
   emitter.on('preview:file', function (data) {

@@ -20,7 +20,6 @@ const login = (state, emit) => {
     }
   `
 
-
   return html`<div class="${styles} login">
     <div class="mw5 pv6 center">
       <h1 class="f4">Log In</h1>

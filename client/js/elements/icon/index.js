@@ -16,8 +16,8 @@ module.exports = iconElement
 function iconElement (iconName, opts) {
   opts = opts || {}
 
-  assert.equal(typeof iconName, 'string', 'elements/icon: iconName should be type string')
-  assert.equal(typeof opts, 'object', 'elements/icon: opts should be type object')
+  assert.strictEqual(typeof iconName, 'string', 'elements/icon: iconName should be type string')
+  assert.strictEqual(typeof opts, 'object', 'elements/icon: opts should be type object')
 
   var classNames = 'icon-' + iconName + ' ' + prefix
   if (opts.class) classNames += (' ' + opts.class)

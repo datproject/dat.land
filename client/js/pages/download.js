@@ -5,7 +5,7 @@ module.exports = wrapper(function (state, emit) {
   return html`
     <div>
       <section class="section">
-        <div class="container">
+        <!--<div class="container">
           <h1>Desktop app</h1>
           <h5>Open the desktop app and copy/paste the link into the 'Import Dat' box.</h5>
           <p class="tc pv3 color-white">
@@ -21,7 +21,7 @@ module.exports = wrapper(function (state, emit) {
          <p class="f7 tc color-neutral-50">
            Windows coming soon.
          </p>
-        </div>
+        </div>-->
         <div class="container">
           <h1 class="f1 content-title horizontal-rule">Using the Terminal</h1>
           <h5>1. <a href="http://nodejs.org">Install node for your platform.</a></h5>
@@ -31,7 +31,7 @@ module.exports = wrapper(function (state, emit) {
           <h5>3. Then download the archive.</h5>
           <pre><code>$ dat clone ${state.archive.key}</code></pre>
           <p>
-            Having trouble installing dat? Try our <a href="http://docs.datproject.org/#troubleshooting">troubleshooting checklist</a> or ask questions in our public chatroom.
+            Having trouble installing dat? Find other <a href="http://docs.datproject.org/install">installation options</a> or ask questions in our public chatroom.
           </p>
           <a href="http://webchat.freenode.net/?channels=dat" target="_blank">
           <img src="https://img.shields.io/badge/irc%20channel-%23dat%20on%20freenode-blue.svg">

@@ -3,8 +3,8 @@ var path = require('path')
 var testServer = process.env.TEST_SERVER || 'https://datbase.org'
 const os = require('os')
 const modificatorKey = (os.type().toLowerCase() === 'darwin')
- ? 'COMMAND'
- : 'CONTROL'
+  ? 'COMMAND'
+  : 'CONTROL'
 
 module.exports = new function () {
   var key = fs.readFileSync(path.join(__dirname, '..', 'key.txt')).toString()
@@ -12,8 +12,8 @@ module.exports = new function () {
   var testCases = this
   testCases['opening the browser and navigating to the url'] = (client) => {
     client
-    .url(testServer)
-    .assert.containsText('body', 'dat')
+      .url(testServer)
+      .assert.containsText('body', 'dat')
   }
   testCases['viewing a dat that doesnt exist gives explore page'] = (client) => {
     client
@@ -37,7 +37,7 @@ module.exports = new function () {
   }
   testCases['viewing a dat that exists with file list works'] = (client) => {
     client
-    .setValue("input[name='import-dat']", key)
+      .setValue("input[name='import-dat']", key)
     client.keys(client.Keys.ENTER, function (done) {
       client.pause(2000)
       client
@@ -62,4 +62,4 @@ module.exports = new function () {
       .keys([client.Keys[modificatorKey], 'v'])
       .expect.element("input[name='import-dat']").value.to.equal('dat://' + key).before(3000)
   }
-}
+}()

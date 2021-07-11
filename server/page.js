@@ -5,7 +5,7 @@ const serializeJS = require('serialize-javascript')
 function page (url, contents, appState) {
   var dehydratedAppState = serializeJS(appState)
   var defaultMetadata = {
-    title: 'datBase - Open data powered by Dat',
+    title: 'datDirectory - Open data powered by Dat',
     author: 'Dat Project',
     description: 'Future-friendly apps for your research data pipeline.',
     image: 'https://datbase.org/public/img/dat-hexagon.png',

@@ -2,7 +2,7 @@ const html = require('choo/html')
 const wrapper = require('../wrapper')
 
 const publish = (state, emit) => {
-  emit(state.events.DOMTITLECHANGE, 'Publish Data | datBase')
+  emit(state.events.DOMTITLECHANGE, 'Publish | datDirectory')
   return html`
     <div class="">
     <section class="section bg-splash-02" id="publish">
@@ -17,7 +17,7 @@ $ dat login
 $ dat create
 $ dat publish</code></pre>
 <p><a class="btn btn--green btn--full" href="http://docs.datproject.org/install">Install dat</a>
-<a class="btn btn--green" href="http://docs.datproject.org/publish">Learn more</a></p>
+<a class="btn btn--green" href="http://docs.datproject.org/">Learn more</a></p>
         </div>
       </section>
     </div>`

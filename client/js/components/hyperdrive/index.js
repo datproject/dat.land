@@ -23,7 +23,7 @@ module.exports = function (state, emit) {
       }
     }
   }
-  emit('archive:update', {updatedAt: updated})
+  emit('archive:update', { updatedAt: updated })
   var vals = Object.keys(lookup).map(key => lookup[key])
   var onclick = (ev, entry) => {
     if (entry.type === 'directory') {
@@ -31,7 +31,7 @@ module.exports = function (state, emit) {
       return true
     } else {
       entry.archiveKey = state.archive.key
-      emit('preview:file', {entry: entry}, noop)
+      emit('preview:file', { entry: entry }, noop)
       return false
     }
   }

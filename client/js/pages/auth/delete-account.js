@@ -7,7 +7,7 @@ module.exports = (state, emit) => {
     e.preventDefault()
     var data = form(e.target)
     if (data.email !== state.township.email) emit('message:error', 'Incorrect email.')
-    else emit('profile:delete', {id: state.township.profile.id})
+    else emit('profile:delete', { id: state.township.profile.id })
     return false
   }
 

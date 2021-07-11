@@ -59,7 +59,7 @@ const archivePage = (state, emit) => {
           ${error(state.archive.error)}
           <div class="dat-details">
             <div id="permissions" class="dat-detail">
-              ${permissions({owner: archive ? archive.owner : false})}
+              ${permissions({ owner: archive ? archive.owner : false })}
             </div>
             <div id="hyperdrive-size" class="dat-detail"><p class="size">${size}</p></div>
             <div id="peers" class="dat-detail">${sources} Source(s)</div>
@@ -72,7 +72,7 @@ const archivePage = (state, emit) => {
       </div>
       <main class="site-main">
         <div class="container">
-          <div id="add-files">${archive && archive.owner ? addFiles({ onfiles: (files) => emit('archive:importFiles', {files}) }) : ''}</div>
+          <div id="add-files">${archive && archive.owner ? addFiles({ onfiles: (files) => emit('archive:importFiles', { files }) }) : ''}</div>
           ${importQueue(state, emit)}
           ${hyperdrive(state, emit)}
         </div>
@@ -81,10 +81,10 @@ const archivePage = (state, emit) => {
         <div class="container">
           <span id="help-text" class="status-bar-status"></span>
           ${(state.archive.downloadTotal || state.archive.uploadTotal)
-            ? html`<div id="hyperdrive-stats" class="status-bar-stats">
+    ? html`<div id="hyperdrive-stats" class="status-bar-stats">
                 Total: ${hyperdriveStats({ downloaded: state.archive.downloadTotal, uploaded: state.archive.uploadTotal })}
               </div>`
-            : ''}
+    : ''}
         </div>
       </div>
       ${preview(state, emit)}

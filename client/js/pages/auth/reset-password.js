@@ -5,11 +5,11 @@ const header = require('./../../components/header')
 const form = require('get-form-data')
 
 function body (state, emit) {
-  emit(state.events.DOMTITLECHANGE, 'Reset Password | datBase')
+  emit(state.events.DOMTITLECHANGE, 'Reset Password | datDirectory')
   // const authenticated = state.township.username
   var query = {}
   if (!module.parent) query = url.parse(window.location.href).query
-  const {accountKey, resetToken, email} = querystring.parse(query)
+  const { accountKey, resetToken, email } = querystring.parse(query)
   function onsubmitConfirm (e) {
     e.preventDefault()
     var data = form(e.target)

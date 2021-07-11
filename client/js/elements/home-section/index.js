@@ -49,8 +49,8 @@ module.exports = function (props) {
         </header>
         <div class="pt3 cf">
           ${props.sections.map((section) => {
-            return textSection(section)
-          })}
+    return textSection(section)
+  })}
         </div>
         ${cta()}
       </div>

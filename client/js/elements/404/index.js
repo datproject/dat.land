@@ -18,11 +18,11 @@ module.exports = function (props) {
   }
   var icon
   if (props.icon) {
-    icon = datIcon(props.icon, {class: 'w3'})
+    icon = datIcon(props.icon, { class: 'w3' })
   } if (props.icon === 'loader') {
     icon = loaderIcon()
   } else {
-    icon = datIcon('sad-dat', {class: 'w3 color-green'})
+    icon = datIcon('sad-dat', { class: 'w3 color-green' })
   }
 
   return html`

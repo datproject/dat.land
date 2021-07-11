@@ -19,22 +19,25 @@ var avatarStyles = css`
 `
 
 module.exports = function (state, emit) {
+  if (state) return html`` // always true
+  // Hide login button
+  //
   if (module.parent || !state.township.whoami) return html``
   if (state.township.email) {
     return html`
       ${button({
-        text: gravatar({email: state.township.email}, {}, avatarStyles),
-        click: () => emit('township:sidePanel'),
-        klass: 'btn bn pr0'
-      })}
+    text: gravatar({ email: state.township.email }, {}, avatarStyles),
+    click: () => emit('township:sidePanel'),
+    klass: 'btn bn pr0'
+  })}
     `
   } else {
     return html`
       ${button({
-        text: 'Log In',
-        click: function () { window.location.href = '/login' },
-        klass: 'btn btn--full btn--green'
-      })}
+    text: 'Log In',
+    click: function () { window.location.href = '/login' },
+    klass: 'btn btn--full btn--green'
+  })}
     `
   }
 }

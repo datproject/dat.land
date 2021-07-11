@@ -12,8 +12,8 @@ module.exports = (state, emit) => {
       return html`<table id="import-queue">
         ${writing ? renderLi(writing, writingProgressPct) : null}
         ${next.map(function (file) {
-          return renderLi(file, null)
-        })}
+    return renderLi(file, null)
+  })}
       </table>`
     } else {
       return html`<table id="import-queue"></table>`

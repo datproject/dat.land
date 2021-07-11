@@ -29,7 +29,7 @@ db(config.db, function (err, db) {
     })
 
     process.once('uncaughtException', function (err) {
-      config.log.error({message: 'error', error: err.message, stack: err.stack})
+      config.log.error({ message: 'error', error: err.message, stack: err.stack })
       console.error(err.stack)
       process.exit(1)
     })

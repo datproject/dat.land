@@ -21,12 +21,12 @@ var township = TownshipClient({
   server: 'http://localhost:8080/api/v1'
 })
 
-township.register({username: 'admin', password: password, email: email}, function (err, resp, json) {
+township.register({ username: 'admin', password: password, email: email }, function (err, resp, json) {
   if (err && err.message.indexOf('exists') === -1) throw new Error(err.message)
   console.log('logging in', email, password)
-  township.login({email: email, password: password}, function (err, resp, json) {
+  township.login({ email: email, password: password }, function (err, resp, json) {
     if (err) throw new Error(err.message)
-    township.secureRequest({url: '/dats', method: 'POST', body: dat, json: true}, function (err, resp, json) {
+    township.secureRequest({ url: '/dats', method: 'POST', body: dat, json: true }, function (err, resp, json) {
       if (err) throw new Error(err.message)
       console.log('created dat', dat)
     })
